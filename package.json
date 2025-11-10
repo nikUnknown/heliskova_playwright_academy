@@ -1,0 +1,25 @@
+{
+  "name": "heliskova_playwright_academy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikunknown/heliskova_playwright_academy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikunknown/heliskova_playwright_academy/issues"
+  },
+  "homepage": "https://github.com/nikunknown/heliskova_playwright_academy#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.0"
+  }
+}
