@@ -15,6 +15,5 @@ test("Register new account", async ({ page }) => {
   await registerPage.fillPhone("123456789");
   await registerPage.fillPassword("Playwright321!");
   await registerPage.fillPasswordConfirmation("Playwright321!");
-  await registerPage.clickPrivacyPolicy();
   await registerPage.clickToRegister();
 });

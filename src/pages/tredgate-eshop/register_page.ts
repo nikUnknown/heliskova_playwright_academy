@@ -8,7 +8,6 @@ export class RegisterPage {
   readonly phoneInput: Locator;
   readonly passwordInput: Locator;
   readonly passwordConfirmInput: Locator;
-  readonly privacyPolicyCheck: Locator;
   readonly continueButton: Locator;
 
   constructor(page: Page) {
@@ -19,7 +18,6 @@ export class RegisterPage {
     this.phoneInput = page.locator("#input-telephone");
     this.passwordInput = page.locator("#input-password");
     this.passwordConfirmInput = page.locator("#input-confirm");
-    this.privacyPolicyCheck = page.locator('input[name="agree"]');
     this.continueButton = page.locator('input[type="submit"]');
   }
 
@@ -45,10 +43,6 @@ export class RegisterPage {
 
   async fillPasswordConfirmation(passwordConfirmInput: string) {
     await this.passwordConfirmInput.fill(passwordConfirmInput);
-  }
-
-  async clickPrivacyPolicy() {
-    await this.privacyPolicyCheck.check();
   }
 
   async clickToRegister() {
