@@ -1,8 +1,8 @@
 // src/pages/pmtool/
 // login_page.ts
 
-import { Locator, Page } from "@playwright/test";
-import { DashoardPage } from "./dashboard_page.ts";
+import { expect, Locator, Page, test } from "@playwright/test";
+import { DashboardPage } from "./dashboard_page.ts";
 import { LostPasswordPage } from "./lost_password_page.ts";
 
 export class LoginPage {
@@ -12,6 +12,7 @@ export class LoginPage {
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
   readonly lostPasswordButton: Locator;
+  readonly pageHeader: Locator;
 
   constructor(page: Page) {
     this.page = page; // ? Nastavení stránky (abychom mohli interagovat s prohlížečem)
@@ -19,11 +20,12 @@ export class LoginPage {
     this.passwordInput = page.locator("#password");
     this.loginButton = page.locator('[type="submit"]');
     this.lostPasswordButton = page.locator("#forget_password");
+    this.pageHeader = page.locator(".form-title");
   }
 
   async open() {
     await this.page.goto(this.url);
-    return this; // ? Po otevreni zustavam na login page, proto davam return this;
+    return this; // ? Po otevření zůstávám na LoginPage - dávám return this;
   }
 
   async fillUsername(username: string) {
@@ -38,7 +40,7 @@ export class LoginPage {
 
   async clickLogin() {
     await this.loginButton.click();
-    return new DashoardPage(this.page); // ? Po kliknuti na tlacitko Login program pokracuje na Dashboard (jinou stranku), proto pouzivame return new DashboardPage
+    return new DashboardPage(this.page); // ? Po kliknutí na tlačítko Login, program pokračuje na Dashboard - proto používáme return new DashboardPage (jdeme na jinou stránku)
   }
 
   async clickPasswordForgotten() {
@@ -46,11 +48,21 @@ export class LoginPage {
     return new LostPasswordPage(this.page);
   }
 
-  // ? Explicitni typovou anotaci pouzivame zejmena pri komplexnejsich metodach, abychom i do budoucnosti (kdyz se bude menit obsah teto metody) meli jasno, kam tato metoda bude pokracovat.
-  async login(username: string, password: string): Promise<DashoardPage> {
-    await this.fillUsername(username);
-    await this.fillPassword(password);
-    await this.clickLogin();
-    return new DashoardPage(this.page);
+  // ? Explicitní typovou anotaci používáme zejména při komplexních metodách, abychom i do budoucnosti (když se bude měnit obsah této metody) měli jasno, kam tato metoda bude pokračovat.
+  async login(username: string, password: string): Promise<DashboardPage> {
+    await test.step("Login to Pmtool", async () => {
+      await this.fillUsername(username);
+      await this.fillPassword(password);
+      await this.clickLogin();
+    });
+
+    return new DashboardPage(this.page);
+  }
+
+  async pageHeaderAsserts(expectedText: string) {
+    await expect(this.pageHeader, "Page Header is Visible").toBeVisible();
+    await expect(this.pageHeader, "Page Header has Text").toHaveText(
+      expectedText
+    );
   }
 }
