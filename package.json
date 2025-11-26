@@ -1,25 +1,23 @@
 {
-  "name": "heliskova_playwright_academy",
+  "name": "playwright_academy_fall_2025_afternoon",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
+    "test": "playwright test",
     "test:ui": "playwright test --ui"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nikunknown/heliskova_playwright_academy.git"
+    "url": "git+https://github.com/fifkapetr/playwright_academy_fall_2025_afternoon.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nikunknown/heliskova_playwright_academy/issues"
+    "url": "https://github.com/fifkapetr/playwright_academy_fall_2025_afternoon/issues"
   },
-  "homepage": "https://github.com/nikunknown/heliskova_playwright_academy#readme",
+  "homepage": "https://github.com/fifkapetr/playwright_academy_fall_2025_afternoon#readme",
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@faker-js/faker": "^10.1.0",
